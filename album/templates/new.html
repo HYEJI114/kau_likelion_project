@@ -1,0 +1,28 @@
+{% extends 'base.html'%}
+{% load staticfiles %}
+{% block contents %}
+    <div class="container">
+        <form action="{% url 'create' %}">
+            <h4>Title : </h4>
+            <input type="text" name="title">
+            <br>
+            <br>
+            <h4>artist : </h4>
+            <input type="text" name="artist">
+            <br>
+            <br>
+            <h4>Review : </h4>
+            <textarea cols=40 rows=10 name="review"></textarea>
+            <br>
+            <br>
+            <h4>Cover : </h4><input type="file" name="cover">
+            <br>
+            <br>
+            <input class="btn btn-dark" type="submit" value="Submit">
+        </form>
+        <br>
+        <a href="{% url 'home' %}" class="btn btn-secondary my-2">Back</a>
+    </div>
+
+{%endblock%}
+

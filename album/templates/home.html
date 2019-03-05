@@ -1,0 +1,63 @@
+{% extends 'base.html'%}
+{% load staticfiles %}
+{% block contents %}
+    <!--여기부터 내용-->
+
+    <main role="main">
+        <br>
+      <section class="jumbotron text-center">
+        <div class="container">
+          <h1 class="jumbotron-heading">Music Review<img src="{% static 'note_img.png' %}" width="70dp" alt=""></h1>
+          <p class="lead text-muted">KAU Project</p>
+        </div>
+      </section>
+
+      <div class="album py-5 bg-light">
+        <div class="container">
+          <div class="row">
+          {% for album in posts %}
+            <div class="col-md-4">
+              <div class="card mb-4 shadow-sm">
+                <img class="card-img-top" src="{{ album.cover.url }}" alt="Album image" width="180dp">
+                <div class="card-body">
+                  <h3 class="card-text">{{ album.title }}</h3>
+                  <h5 class="card-text">{{ album.artist }}</h5>
+                  <p class="card-text">{{ album.review }}</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <a href="{% url 'detail' album.id %}">
+                      <button type="button" class="btn btn-sm btn-outline-secondary">Detail</button>
+                      </a>
+                    </div>
+                    <small class="text-muted">{{ album.release_date }}</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+          </div>
+        </div>
+      </div>
+    </main>
+
+
+    <div class="container">
+
+      {%if posts.has_previous%}
+      <a href="?page=1" class="text-decoration-none">First</a>  &nbsp; 
+      <a href="?page={{posts.previous_page_number}}" class="text-decoration-none">Previous</a> &nbsp;
+      {%endif%}
+    
+      <span>{{posts.number}}</span> &nbsp;
+      <span>of</span> &nbsp;
+      <span>{{posts.paginator.num_pages}} </span> &nbsp;
+    
+      {%if posts.has_next%}
+      <a href="?page={{posts.next_page_number}}" class="text-decoration-none">Next</a> &nbsp;
+      <a href="?page={{posts.paginator.num_pages}}" class="text-decoration-none">Last</a> &nbsp;
+      {%endif%}
+    
+    </div>
+
+  {%endblock%}
+

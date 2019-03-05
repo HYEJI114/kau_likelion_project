@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block contents %}
+<br>
+    <div class="container jumbotron">
+        <h1 class="card-text">{{ album.title }}</h1>
+        <h3 class="card-text">{{ album.artist }}</h3>
+        <small class="text-muted">{{ album.release_date }}</small>
+        <hr/>
+        <img src="{{ album.cover.url }}" width="400dp">
+        <p class="card-text">{{ album.review }}</p>
+        <a href="{% url 'home' %}" class="btn btn-secondary my-2">Back</a>
+    </div>
+{% endblock %}

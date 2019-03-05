@@ -1,0 +1,1 @@
+web: gunicorn kauproject.wsgi --log-file -
